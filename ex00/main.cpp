@@ -5,10 +5,10 @@ int main()
     Zombie zomboss("Zomboss");
     zomboss.announce();
     std::cout << "------------------------" << std::endl;
-    Zombie* zombie1 = newZombie("Zombie1");
+    Zombie* zombie1 = newZombie("Dynamic Zombie");
     zombie1->announce();
     
-    randomChump("Zombie2");
+    randomChump("Random Chump Zombie");
     zomboss.announce();
     std::cout << "------------------------" << std::endl;
     

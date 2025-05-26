@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX := g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-NAME := BraiiiiiiinnnzzzZ
+NAME := Moar_brainz!
 
 # vpath for header files
 vpath %.hpp include/
@@ -13,7 +13,7 @@ vpath %.cpp src/
 H_FILES := Zombie.hpp
 
 # .cpp source files
-SRC_FILES := main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SRC_FILES := main.cpp Zombie.cpp zombieHorde.cpp
 
 # Object directory and object files
 OBJ_DIR := obj
