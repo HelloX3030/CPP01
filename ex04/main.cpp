@@ -5,19 +5,22 @@
 
 static std::string custom_replace(std::string str, const std::string &to_replace, const std::string &replace_with)
 {
-    std::string result;
+    if (to_replace.empty())
+        return str;
+    if (to_replace == replace_with)
+        return str;
+
+    std::ostringstream result;
     size_t pos = 0;
     size_t found;
 
     while ((found = str.find(to_replace, pos)) != std::string::npos)
     {
-        result.append(str, pos, found - pos);
-        result.append(replace_with);
+        result << str.substr(pos, found - pos) << replace_with;
         pos = found + to_replace.length();
     }
-    result.append(str, pos, str.length() - pos);
-
-    return result;
+    result << str.substr(pos);
+    return result.str();
 }
 
 int main(int argc, char **argv)
@@ -37,8 +40,9 @@ int main(int argc, char **argv)
     if (!outputFile.is_open())
         return (std::cerr << "Error: Could not create file " << filename << ".replace" << std::endl, 1);
 
-    std::string line;
-    while (std::getline(inputFile, line))
-        outputFile << custom_replace(line, str, replace) << std::endl;
+    std::ostringstream buffer;
+    buffer << inputFile.rdbuf();
+    std::string lines = buffer.str();
+    outputFile << custom_replace(lines, str, replace);
     return (0);
 }
