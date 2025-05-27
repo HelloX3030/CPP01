@@ -3,15 +3,21 @@
 #include <iostream>
 #include <string>
 
-static std::string custom_replace(std::string str, std::string to_replace, std::string replace_with)
+static std::string custom_replace(std::string str, const std::string &to_replace, const std::string &replace_with)
 {
+    std::string result;
     size_t pos = 0;
-    while ((pos = str.find(to_replace, pos)) != std::string::npos)
+    size_t found;
+
+    while ((found = str.find(to_replace, pos)) != std::string::npos)
     {
-        str.replace(pos, to_replace.length(), replace_with);
-        pos += replace_with.length();
+        result.append(str, pos, found - pos);
+        result.append(replace_with);
+        pos = found + to_replace.length();
     }
-    return str;
+    result.append(str, pos, str.length() - pos);
+
+    return result;
 }
 
 int main(int argc, char **argv)
