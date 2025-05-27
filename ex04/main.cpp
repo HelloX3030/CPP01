@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-static std::string custom_replace(std::string str, const std::string &to_replace, const std::string &replace_with)
+static std::string custom_replace(const std::string str, const std::string &to_replace, const std::string &replace_with)
 {
     if (to_replace.empty())
         return str;
