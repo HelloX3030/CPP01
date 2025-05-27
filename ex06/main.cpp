@@ -1,9 +1,11 @@
 #include "Harl.hpp"
 #include <limits>
 
-int main(void)
+int main(int argc, char **argv)
 {
-    Harl harl;
+    if (argc != 2)
+        return (std::cerr << "Usage: " << argv[0] << " <level>" << std::endl, EXIT_FAILURE);
+    Harl harl(argv[1]);
     uint64_t complain_amount = std::numeric_limits<uint64_t>::max() - 1;
     for (uint64_t i = 0; i < complain_amount; i++)
     {
@@ -17,5 +19,5 @@ int main(void)
         }
         std::cout << std::endl;
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
