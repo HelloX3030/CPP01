@@ -16,9 +16,11 @@ Harl::Harl(std::string level)
         if (levels[i] == level)
         {
             this->print_level = i;
-            break;
+            return;
         }
     }
+    std::cout << "Invalid level: " << level << ". Defaulting to DEBUG." << std::endl;
+    print_level = 0;
 }
 
 Harl::Harl()
@@ -63,9 +65,9 @@ Harl::~Harl()
 
 void Harl::complain(const std::string &level)
 {
-    for (int i = 0; i < 4; ++i)
+    for (int i = print_level; i < 4; ++i)
     {
-        if (levels[i] == level && i >= this->print_level)
+        if (levels[i] == level)
         {
             (this->*functions[i])();
             return;
