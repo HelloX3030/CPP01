@@ -13,7 +13,8 @@ vpath %.cpp src/
 H_FILES := include.hpp
 
 # .cpp source files
-SRC_FILES := main.cpp
+SRC_FILES := main.cpp \
+			 custom_replace.cpp \
 
 # Object directory and object files
 OBJ_DIR := obj
