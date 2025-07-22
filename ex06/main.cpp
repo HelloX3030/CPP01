@@ -1,12 +1,20 @@
 #include "Harl.hpp"
+#include <iostream>
+#include <string>
 #include <limits>
 
 int main(int argc, char **argv)
 {
     if (argc != 2)
         return (std::cerr << "Usage: " << argv[0] << " <level>" << std::endl, EXIT_FAILURE);
-    Harl harl(argv[1]);
-    // uint64_t complain_amount = std::numeric_limits<uint64_t>::max() - 1;
+
+    std::string level = argv[1];
+
+    if (level != "DEBUG" && level != "INFO" && level != "WARNING" && level != "ERROR")
+        return (std::cout << "Invalid Level: " << level << std::endl, EXIT_FAILURE);
+
+    Harl harl(level);
+
     uint64_t complain_amount = 10;
     for (uint64_t i = 0; i < complain_amount; i++)
     {
@@ -20,5 +28,6 @@ int main(int argc, char **argv)
         }
         std::cout << std::endl;
     }
+
     return EXIT_SUCCESS;
 }
